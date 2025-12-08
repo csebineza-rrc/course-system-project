@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import * as courseEnrollmentService from "../services/courseEnrollmentService";
 import { courseEnrollment } from "../models/courseEnrollment";
 import { HTTP_STATUS } from "../middleware/validate";
-import { successResponse, errorResponse } from "../models/Response";
+import { successResponse } from "../models/Response";
 import { sendEmail } from "../../../utils/mailer";  
 
 /**
