@@ -84,7 +84,7 @@ export const enrollInCourse = async (
         );
 
         res.status(HTTP_STATUS.CREATED).json(
-            successResponse(enrollCourse, "Sucessfully enrolled in the course")
+            successResponse(enrollCourse, "Successfully enrolled in the course")
         );
     } catch (error: unknown) {
         next(error);
