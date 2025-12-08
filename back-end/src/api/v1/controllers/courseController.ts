@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import * as courseService from "../services/courseService";
 import { Course} from "../models/course";
-import { HTTP_STATUS } from "../middleware/validate";
+import { HTTP_STATUS } from "../constants/httpConstants";
 import { successResponse } from "../models/Response";
 
 /**
