@@ -39,9 +39,9 @@ export const getStudentByID = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-       const retrieveCourse = await courseService.getCourseById(req.params.id);
+       const retrievedStudent = await courseService.getCourseById(req.params.id);
         res.status(HTTP_STATUS.OK).json(
-            successResponse(retrieveCourse, "Student successfully retrieved.")
+            successResponse(retrievedStudent, "Student successfully retrieved.")
         );
     } catch (error: unknown) {
         next(error);
