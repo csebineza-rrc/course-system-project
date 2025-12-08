@@ -71,7 +71,7 @@ export const getDocuments = async (
     collectionName: string
 ): Promise<FirebaseFirestore.QuerySnapshot> => {
     try {
-        return await db.collection(collectionName).get()   
+        return await db.collection(collectionName).get();   
     } catch (error: unknown) {
         const errorMessage =
             error instanceof Error ? error.message : "Unknown error";
