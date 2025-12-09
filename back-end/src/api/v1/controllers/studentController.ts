@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import * as courseService from "../services/studentService";
-import { Course} from "../models/course";
+import { Student } from "../models/student";
 import { HTTP_STATUS } from "../middleware/validate";
 import { successResponse } from "../models/Response";
 
@@ -17,9 +17,9 @@ export const getAllStudents = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const AllCourses: Course[] = await courseService.getAllCourses();
+        const allStudents: Student[] = await courseService.getAllCourses();
         res.status(HTTP_STATUS.OK).json(
-            successResponse(AllCourses, "All students successfully retrieved.")
+            successResponse(allStudents, "All students successfully retrieved.")
         );
     } catch (error: unknown) {
         next(error);
