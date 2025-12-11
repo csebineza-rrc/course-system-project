@@ -1,40 +1,38 @@
 import { Database } from "../../../database";
 import { CourseEnrollment } from "../models/courseEnrollment";
 
-export class CourseEnrollmentService {
-    constructor(private db: Database) {}
+const db = new Database();
 
-    async enrollStudent(studentId: string, courseId: string): Promise<CourseEnrollment> {
-        const enrollment = {
-            id: this.generateId(),
-            studentId,
-            courseId,
-            enrolledAt: new Date(),
-            status: "active",
-        };
+function generateId(): string {
+    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
 
-        await this.db.insert("course_enrollments", enrollment);
-        return enrollment;
-    }
+export async function enrollStudent(studentId: string, courseId: string): Promise<CourseEnrollment> {
+    const enrollment = {
+        id: generateId(),
+        studentId,
+        courseId,
+        enrolledAt: new Date(),
+        status: "active",
+    };
 
-    async getStudentEnrollments(studentId: string): Promise<CourseEnrollment[]> {
-        return this.db.query("course_enrollments", { studentId });
-    }
+    await db.insert("course_enrollments", enrollment);
+    return enrollment;
+}
 
-    async getCourseEnrollments(courseId: string): Promise<CourseEnrollment[]> {
-        return this.db.query("course_enrollments", { courseId });
-    }
+export async function getStudentEnrollments(studentId: string): Promise<CourseEnrollment[]> {
+    return db.query("course_enrollments", { studentId });
+}
 
-    async unenrollStudent(studentId: string, courseId: string): Promise<boolean> {
-        return this.db.delete("course_enrollments", { studentId, courseId });
-    }
+export async function getCourseEnrollments(courseId: string): Promise<CourseEnrollment[]> {
+    return db.query("course_enrollments", { courseId });
+}
 
-    async getEnrollmentStatus(studentId: string, courseId: string): Promise<CourseEnrollment | null> {
-        const result = await this.db.queryOne("course_enrollments", { studentId, courseId });
-        return result || null;
-    }
+export async function unenrollStudent(studentId: string, courseId: string): Promise<boolean> {
+    return db.delete("course_enrollments", { studentId, courseId });
+}
 
-    private generateId(): string {
-        return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    }
+export async function getEnrollmentStatus(studentId: string, courseId: string): Promise<CourseEnrollment | null> {
+    const result = await db.queryOne("course_enrollments", { studentId, courseId });
+    return result || null;
 }
