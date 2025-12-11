@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import * as courseService from "../services/courseService";
 import { Course} from "../models/course";
-import { HTTP_STATUS } from "../middleware/validate";
-import { successResponse, errorResponse } from "../models/Response";
+import { HTTP_STATUS } from "../constants/httpConstants";
+import { successResponse } from "../models/Response";
 
 /**
  * Handles the GET request to retrieve all courses

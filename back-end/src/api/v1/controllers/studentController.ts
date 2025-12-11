@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import * as courseService from "../services/studentService";
-import { Course} from "../models/course";
+import { Student } from "../models/student";
 import { HTTP_STATUS } from "../middleware/validate";
-import { successResponse, errorResponse } from "../models/Response";
+import { successResponse } from "../models/Response";
 
 /**
  * Handles the GET request to retrieve all student
@@ -17,9 +17,9 @@ export const getAllStudents = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const AllCourses: Course[] = await courseService.getAllCourses();
+        const allStudents: Student[] = await courseService.getAllCourses();
         res.status(HTTP_STATUS.OK).json(
-            successResponse(AllCourses, "All students successfully retrieved.")
+            successResponse(allStudents, "All students successfully retrieved.")
         );
     } catch (error: unknown) {
         next(error);
@@ -39,9 +39,9 @@ export const getStudentByID = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-       const retrieveCourse = await courseService.getCourseById(req.params.id);
+       const retrievedStudent = await courseService.getCourseById(req.params.id);
         res.status(HTTP_STATUS.OK).json(
-            successResponse(retrieveCourse, "Student successfully retrieved.")
+            successResponse(retrievedStudent, "Student successfully retrieved.")
         );
     } catch (error: unknown) {
         next(error);

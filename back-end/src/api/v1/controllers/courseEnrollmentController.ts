@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import * as courseEnrollmentService from "../services/courseEnrollmentService";
 import { courseEnrollment } from "../models/courseEnrollment";
 import { HTTP_STATUS } from "../middleware/validate";
-import { successResponse, errorResponse } from "../models/Response";
+import { successResponse } from "../models/Response";
 import { sendEmail } from "../../../utils/mailer";  
 
 /**
@@ -84,7 +84,7 @@ export const enrollInCourse = async (
         );
 
         res.status(HTTP_STATUS.CREATED).json(
-            successResponse(enrollCourse, "Sucessfully enrolled in the course")
+            successResponse(enrollCourse, "Successfully enrolled in the course")
         );
     } catch (error: unknown) {
         next(error);
