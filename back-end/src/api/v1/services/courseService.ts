@@ -7,7 +7,7 @@ import {
     deleteDocument,
 } from "../repositories/firestoreRepository";
 
-// Firestone collection name
+// Firestore collection name
 const COLLECTION: string = "courses";
 
 /**
