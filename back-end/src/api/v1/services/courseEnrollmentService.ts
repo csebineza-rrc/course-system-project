@@ -64,7 +64,7 @@ export const getCourseById = async (id: string): Promise<CourseEnrollment> => {
 
         return item;
     } catch (error) {
-        throw error;
+        throw new Error(`Error in getCourseById for id "${id}": ${error instanceof Error ? error.message : error}`);
     }
 };
 
