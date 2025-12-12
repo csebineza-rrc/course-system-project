@@ -119,7 +119,7 @@ export const getCourseById = async (id: string): Promise<Course> => {
 
         const data = doc.data();
         if (!data) {
-            throw new Error(`Course with ID ${id} not found`)
+            throw new Error(`Course with ID ${id} not found`);
         }
 
         const Course: Course = {
