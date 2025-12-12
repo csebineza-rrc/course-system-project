@@ -71,7 +71,7 @@ export const getCourseById = async (id: string): Promise<CourseEnrollment> => {
 /**
  * Creates a new course enrollment in Firestore
  * @param courseData - The data for the new course
- * @returns The course with a their own generated ID
+ * @returns The course with their own generated ID
  */
 export const enrollInCourse = async (courseData: {
     studentId:  string,
