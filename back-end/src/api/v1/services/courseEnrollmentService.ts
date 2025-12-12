@@ -146,6 +146,6 @@ export const deleteCourseEnrolled = async (id: string): Promise<any> => {
 
         return course.data();
     } catch (error) {
-        throw error;
+        throw new Error(`Error in deleteCourseEnrolled (id: ${id}): ${error instanceof Error ? error.message : error}`);
     }
 };
