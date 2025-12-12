@@ -107,7 +107,7 @@ export const enrollInCourse = async (courseData: {
  * @param id - The ID of course
  * @param courseData - The fields to update
  * @returns The updated fields
- * @throws Error if student not found
+ * @throws Error if course enrollment not found
  */
 export const updateCourseEnrolled = async (
     id: string,
