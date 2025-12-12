@@ -43,7 +43,7 @@ export const getAllCourses = async (): Promise<Course[]> => {
  * @param courseData - The data for the new Course
  * @returns The created Course with generated ID
  */
-export const CreateNewCourse = async (courseData: {
+export const createNewCourse = async (courseData: {
     courseName: string;
     courseId: string;        
     credits: number;           
