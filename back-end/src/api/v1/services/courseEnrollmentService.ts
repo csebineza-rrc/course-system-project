@@ -7,7 +7,7 @@ import {
     deleteDocument,
 } from "../repositories/firestoreRepository";
 
-// Firestone collection name
+// Firestore collection name
 const COLLECTION: string = "courseEnrollment";
 
 /**
@@ -31,7 +31,7 @@ export const getAllCoursesEnrolled = async (): Promise<CourseEnrollment[]> => {
 
         return studentsEnrollement;
     } catch (error) {
-        throw error;
+        throw new Error(`Failed to fetch all course enrollments: ${error instanceof Error ? error.message : error}`);
     }
 };
 
@@ -50,7 +50,7 @@ export const getCourseById = async (id: string): Promise<CourseEnrollment> => {
 
         const data = doc.data();
         if (!data) {
-            throw new Error(`Course with ID ${id} not found`)
+            throw new Error(`Course with ID ${id} not found`);
         }
 
         const item: CourseEnrollment = {
@@ -64,14 +64,14 @@ export const getCourseById = async (id: string): Promise<CourseEnrollment> => {
 
         return item;
     } catch (error) {
-        throw error;
+        throw new Error(`Error in getCourseById for id "${id}": ${error instanceof Error ? error.message : error}`);
     }
 };
 
 /**
  * Creates a new course enrollment in Firestore
  * @param courseData - The data for the new course
- * @returns The course with a their own generated ID
+ * @returns The course with their own generated ID
  */
 export const enrollInCourse = async (courseData: {
     studentId:  string,
@@ -107,7 +107,7 @@ export const enrollInCourse = async (courseData: {
  * @param id - The ID of course
  * @param courseData - The fields to update
  * @returns The updated fields
- * @throws Error if student not found
+ * @throws Error if course enrollment not found
  */
 export const updateCourseEnrolled = async (
     id: string,
@@ -146,6 +146,6 @@ export const deleteCourseEnrolled = async (id: string): Promise<any> => {
 
         return course.data();
     } catch (error) {
-        throw error;
+        throw new Error(`Error in deleteCourseEnrolled (id: ${id}): ${error instanceof Error ? error.message : error}`);
     }
 };
