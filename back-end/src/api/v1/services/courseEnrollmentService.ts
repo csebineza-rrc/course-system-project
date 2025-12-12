@@ -31,7 +31,7 @@ export const getAllCoursesEnrolled = async (): Promise<CourseEnrollment[]> => {
 
         return studentsEnrollement;
     } catch (error) {
-        throw error;
+        throw new Error(`Failed to fetch all course enrollments: ${error instanceof Error ? error.message : error}`);
     }
 };
 
