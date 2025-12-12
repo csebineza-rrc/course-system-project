@@ -1,40 +1,151 @@
-import { Database } from "../../../database";
 import { CourseEnrollment } from "../models/courseEnrollment";
+import {
+    createDocument,
+    getDocuments,
+    getDocumentById,
+    updateDocument,
+    deleteDocument,
+} from "../repositories/firestoreRepository";
 
-export class CourseEnrollmentService {
-    constructor(private db: Database) {}
+// Firestone collection name
+const COLLECTION: string = "courseEnrollment";
 
-    async enrollStudent(studentId: string, courseId: string): Promise<CourseEnrollment> {
-        const enrollment = {
-            id: this.generateId(),
-            studentId,
-            courseId,
-            enrolledAt: new Date(),
-            status: "active",
+/**
+ * Retrieves all courses that the student has enrolled in from Firestore
+ * @returns Array of all courses
+ */
+export const getAllCoursesEnrolled = async (): Promise<CourseEnrollment[]> => {
+    try {
+        const snapshot = await getDocuments(COLLECTION);
+        const studentsEnrollement: CourseEnrollment[] = snapshot.docs.map((doc: any) => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                studentId: data.studentId,
+                courseName: data.courseName,
+                courseId: data.courseId,
+                semester: data.semester,
+                enrolledAt: data.enrolledAt             
+            } as CourseEnrollment;
+        });
+
+        return studentsEnrollement;
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Retrieves a single course enrolled by the student using the ID from Firestore
+ * @param id - The ID of the course to retrieve
+ * @returns The course if found
+ * @throws Error if course not found
+ */
+export const getCourseById = async (id: string): Promise<CourseEnrollment> => {
+    try {
+        const doc = await getDocumentById(COLLECTION, id);
+        if (!doc) {
+            throw new Error(`Course with ID ${id} not found`);
+        }
+
+        const data = doc.data();
+        if (!data) {
+            throw new Error(`Course with ID ${id} not found`)
+        }
+
+        const item: CourseEnrollment = {
+            id: (doc.id),
+            studentId: data.studentId,
+            courseName: data.courseName,
+            courseId: data.courseId,
+            semester: data.semester,
+            enrolledAt: data.enrolledAt
+        } as CourseEnrollment;
+
+        return item;
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Creates a new course enrollment in Firestore
+ * @param courseData - The data for the new course
+ * @returns The course with a their own generated ID
+ */
+export const enrollInCourse = async (courseData: {
+    studentId:  string,
+    courseName: string,
+    courseId: string,
+    semester: string,
+    enrolledAt: Date,
+}): Promise<CourseEnrollment> => {
+    try {
+        const now = new Date();
+        const newCourseData = {
+            ...courseData,
+            createdAt: now,
+            updatedAt: now,
         };
 
-        await this.db.insert("course_enrollments", enrollment);
-        return enrollment;
+        const id = await createDocument<CourseEnrollment>(COLLECTION, newCourseData);
+        return { 
+            id: (id), 
+            studentId: newCourseData.studentId, 
+            courseName: newCourseData.courseName,
+            courseId: newCourseData.courseId,
+            semester: newCourseData.semester,
+            enrolledAt: newCourseData.enrolledAt
+         } as CourseEnrollment;
+    } catch (error) {
+        throw error;
     }
+};
 
-    async getStudentEnrollments(studentId: string): Promise<CourseEnrollment[]> {
-        return this.db.query("course_enrollments", { studentId });
-    }
+/**
+ * Updates an existing course in Firestore
+ * @param id - The ID of course
+ * @param courseData - The fields to update
+ * @returns The updated fields
+ * @throws Error if student not found
+ */
+export const updateCourseEnrolled = async (
+    id: string,
+    courseData: Pick<CourseEnrollment, "studentId" | "courseName" | "courseId" | "semester" | "enrolledAt">
+): Promise<CourseEnrollment> => {
+    try {
+        const updateData = {
+            ...courseData,
+            updatedAt: new Date(),
+        };
 
-    async getCourseEnrollments(courseId: string): Promise<CourseEnrollment[]> {
-        return this.db.query("course_enrollments", { courseId });
-    }
+        await updateDocument<CourseEnrollment>(COLLECTION, id, updateData);
 
-    async unenrollStudent(studentId: string, courseId: string): Promise<boolean> {
-        return this.db.delete("course_enrollments", { studentId, courseId });
+        const updatedCourse = await getCourseById(id);
+        return updatedCourse;
+    } catch (error) {
+        throw error;
     }
+};
 
-    async getEnrollmentStatus(studentId: string, courseId: string): Promise<CourseEnrollment | null> {
-        const result = await this.db.queryOne("course_enrollments", { studentId, courseId });
-        return result || null;
-    }
+/**
+ * Deletes a course from Firestore
+ * @param id - The ID of the course to delete
+ * @throws Error if ID not found
+ */
+export const deleteCourseEnrolled = async (id: string): Promise<any> => {
+    try {
+        // Check if Course exists before deleting
+        const course = await getDocumentById(COLLECTION, id);
 
-    private generateId(): string {
-        return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        if (!course) {
+            throw new Error(`Course with ID ${id} not found`);
+        }
+
+        await deleteDocument(COLLECTION, id);
+
+        return course.data();
+    } catch (error) {
+        throw error;
     }
-}
+};
