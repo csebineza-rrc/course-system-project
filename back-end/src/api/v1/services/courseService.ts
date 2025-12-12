@@ -79,17 +79,17 @@ export const CreateNewCourse = async (courseData: {
 /**
  * Updates an existing course that was created in Firestore
  * @param id - The ID of the Course to update
- * @param CourseData - The fields to update
+ * @param courseData - The fields to update
  * @returns The updated Course
  * @throws Error if Course is not found
  */
 export const updateCourse = async (
     id: string,
-    CourseData: Pick<Course, "courseName" | "courseId" | "credits" | "instructor" | "roomNumber" | "deliveryFormat" | "cost">
+    courseData: Pick<Course, "courseName" | "courseId" | "credits" | "instructor" | "roomNumber" | "deliveryFormat" | "cost">
 ): Promise<Course> => {
     try {
         const updateData = {
-            ...CourseData,
+            ...courseData,
             updatedAt: new Date(),
         };
 
