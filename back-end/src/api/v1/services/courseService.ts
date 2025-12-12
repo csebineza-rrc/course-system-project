@@ -26,7 +26,7 @@ export const getAllCourses = async (): Promise<Course[]> => {
                 credits: data.courseId,
                 instructor: data.instructor,
                 roomNumber: data.roomNumber,
-                deliveryFormat: data.coursedeliveryFormat,
+                deliveryFormat: data.deliveryFormat,
                 cost: data.cost
 
             } as Course;
