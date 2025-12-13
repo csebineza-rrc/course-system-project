@@ -11,8 +11,8 @@ import {
 const COLLECTION: string = "student";
 
 /**
- * Retrieves all courses created from Firestore
- * @returns Array of all Courses
+ * Retrieves all students from Firestore
+ * @returns Array of all Students
  */
 export const getAllCourses = async (): Promise<Student[]> => {
     try {
