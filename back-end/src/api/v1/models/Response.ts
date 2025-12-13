@@ -15,7 +15,7 @@ interface ApiResponse<T> {
  * @template T - The type of the data property.
  * @param {T} [data] - The data to include in the response.
  * @param {string} [message] - A message providing additional information about the response.
- * @returns {ApiResponse<T | {}>} The success response object.
+ * @returns {ApiResponse<T>} The success response object.
  */
 export const successResponse = <T>(
     data?: T,
