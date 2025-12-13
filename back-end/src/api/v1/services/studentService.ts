@@ -70,19 +70,19 @@ export const CreateNewCourse = async (courseData: {
 };
 
 /**
- * Updates an existing course that was created in Firestore
+ * Updates an existing student in Firestore
  * @param id - The ID of the Student to update
- * @param CourseData - The fields to update
+ * @param studentData - The fields to update
  * @returns The updated Student
  * @throws Error if Student is not found
  */
 export const updateCourse = async (
     id: string,
-    CourseData: Pick<Student, "studentId" | "fullName" | "email" | "program" | "programYear">
+    studentData: Pick<Student, "studentId" | "fullName" | "email" | "program" | "programYear">
 ): Promise<Student> => {
     try {
         const updateData = {
-            ...CourseData,
+            ...studentData,
             updatedAt: new Date(),
         };
 
