@@ -7,7 +7,7 @@ import {
     deleteDocument,
 } from "../repositories/firestoreRepository";
 
-// Firestone collection name
+// Firestore collection name
 const COLLECTION: string = "courses";
 
 /**
@@ -26,7 +26,7 @@ export const getAllCourses = async (): Promise<Course[]> => {
                 credits: data.courseId,
                 instructor: data.instructor,
                 roomNumber: data.roomNumber,
-                deliveryFormat: data.coursedeliveryFormat,
+                deliveryFormat: data.deliveryFormat,
                 cost: data.cost
 
             } as Course;
@@ -43,7 +43,7 @@ export const getAllCourses = async (): Promise<Course[]> => {
  * @param courseData - The data for the new Course
  * @returns The created Course with generated ID
  */
-export const CreateNewCourse = async (courseData: {
+export const createNewCourse = async (courseData: {
     courseName: string;
     courseId: string;        
     credits: number;           
@@ -79,17 +79,17 @@ export const CreateNewCourse = async (courseData: {
 /**
  * Updates an existing course that was created in Firestore
  * @param id - The ID of the Course to update
- * @param CourseData - The fields to update
+ * @param courseData - The fields to update
  * @returns The updated Course
  * @throws Error if Course is not found
  */
 export const updateCourse = async (
     id: string,
-    CourseData: Pick<Course, "courseName" | "courseId" | "credits" | "instructor" | "roomNumber" | "deliveryFormat" | "cost">
+    courseData: Pick<Course, "courseName" | "courseId" | "credits" | "instructor" | "roomNumber" | "deliveryFormat" | "cost">
 ): Promise<Course> => {
     try {
         const updateData = {
-            ...CourseData,
+            ...courseData,
             updatedAt: new Date(),
         };
 
@@ -119,7 +119,7 @@ export const getCourseById = async (id: string): Promise<Course> => {
 
         const data = doc.data();
         if (!data) {
-            throw new Error(`Course with ID ${id} not found`)
+            throw new Error(`Course with ID ${id} not found`);
         }
 
         const Course: Course = {
