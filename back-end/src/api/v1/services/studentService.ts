@@ -49,20 +49,20 @@ export const CreateNewCourse = async (courseData: {
 }): Promise<Student> => {
     try {
         const now = new Date();
-        const newCourseData = {
+        const newStudentData = {
             ...courseData,
             createdAt: now,
             updatedAt: now,
         };
 
-        const id = await createDocument<Student>(COLLECTION, newCourseData);
+        const id = await createDocument<Student>(COLLECTION, newStudentData);
         return { 
             id: (id), 
-            studentId: newCourseData.studentId,
-            fullName: newCourseData.fullName,
-            email: newCourseData.email,
-            program: newCourseData.program,
-            programYear: newCourseData.programYear
+            studentId: newStudentData.studentId,
+            fullName: newStudentData.fullName,
+            email: newStudentData.email,
+            program: newStudentData.program,
+            programYear: newStudentData.programYear
         } as Student;
     } catch (error) {
         throw error;
