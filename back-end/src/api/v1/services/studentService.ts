@@ -98,7 +98,7 @@ export const updateCourse = async (
 
 
 /**
- * Retrieves a single course by ID from Firestore
+ * Retrieves a single student by ID from Firestore
  * @param id - The ID of the Student to retrieve
  * @returns The Student if found
  * @throws Error if Student not found
