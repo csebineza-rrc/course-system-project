@@ -146,6 +146,6 @@ export const deleteStudent = async (id: string): Promise<void> => {
 
         await deleteDocument(COLLECTION, id);
     } catch (error) {
-        throw error;
+        throw new Error(`Error in deleteCourse (id: ${id}): ${error instanceof Error ? error.message : error}`);
     }
 };
