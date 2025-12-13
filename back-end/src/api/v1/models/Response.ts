@@ -27,11 +27,11 @@ export const successResponse = <T>(
 });
 
 /**
- * Creates a standardized error response object
- * Ensures ann API errors follow the same format
- * @param message - The error message
- * @param code - Optional error code for debugging
- * @returns
+ * Creates a standardized error response object.
+ * Ensures all API errors follow the same format.
+ * @param message - The error message.
+ * @param code - Optional error code for debugging.
+ * @returns {ApiResponse<null>} An ApiResponse object with null data, containing the error details and a timestamp.
  */
 export const errorResponse = (
     message: string,
