@@ -136,7 +136,7 @@ export const getCourseById = async (id: string): Promise<Student> => {
  * @param id - The ID of the Student to delete
  * @throws Error if Student not found
  */
-export const deleteCourse = async (id: string): Promise<void> => {
+export const deleteStudent = async (id: string): Promise<void> => {
     try {
         // Check if item exists before deleting
         const doc = await getDocumentById(COLLECTION, id);
