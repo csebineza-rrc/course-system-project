@@ -138,13 +138,6 @@ router.post(
  *           maximum: 1
  *           default: 1
  *         description: Update an existing course from the database.
- *       - name: role
- *         in: query
- *         required: false
- *         schema:
- *           type: string
- *           enum: []
- *         description: Filter courses by role (if applicable)
  *     responses:
  *       '200':
  *         description: Successfully updated a course
