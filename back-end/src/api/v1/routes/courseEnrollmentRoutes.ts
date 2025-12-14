@@ -39,7 +39,7 @@ const router: Router = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 users:
+ *                 registrations:
  *                   type: array
  *                   items:
  *                     $ref: '#/components/validations/Registrations'
