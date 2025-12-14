@@ -15,7 +15,7 @@ interface ApiResponse<T> {
  * @template T - The type of the data property.
  * @param {T} [data] - The data to include in the response.
  * @param {string} [message] - A message providing additional information about the response.
- * @returns {ApiResponse<T | {}>} The success response object.
+ * @returns {ApiResponse<T>} The success response object.
  */
 export const successResponse = <T>(
     data?: T,
@@ -27,11 +27,11 @@ export const successResponse = <T>(
 });
 
 /**
- * Creates a standardized error response object
- * Ensures ann API errors follow the same format
- * @param message - The error message
- * @param code - Optional error code for debugging
- * @returns
+ * Creates a standardized error response object.
+ * Ensures all API errors follow the same format.
+ * @param message - The error message.
+ * @param code - Optional error code for debugging.
+ * @returns {ApiResponse<null>} An ApiResponse object with null data, containing the error details and a timestamp.
  */
 export const errorResponse = (
     message: string,
