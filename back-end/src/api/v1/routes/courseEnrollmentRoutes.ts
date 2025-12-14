@@ -63,7 +63,7 @@ router.get(
  *         description: The ID of the course to retrieve
  *     responses:
  *       '200':
- *         description: Successfully retrieved the student
+ *         description: Successfully retrieved the course enrollment record
  *         content:
  *           application/json:
  *             schema:
