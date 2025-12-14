@@ -98,10 +98,8 @@ router.get(
  *             schema:
  *               type: object
  *               properties:
- *                 users:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/validations/Registration'
+ *                 enrollment:
+ *                   $ref: '#/components/validations/Registration'
  *                 total:
  *                   type: integer
  *                 page:
