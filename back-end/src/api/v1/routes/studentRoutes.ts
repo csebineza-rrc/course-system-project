@@ -91,23 +91,12 @@ router.get(
  *   post:
  *     summary: Enroll in a new course.
  *     tags: [Student]
- *     parameters:
- *       - name: limit
- *         in: query
- *         required: true
- *         schema:
- *           type: integer
- *           minimum: 1
- *           maximum: 1
- *           default: 1
- *         description: Enroll is a new single course.
- *       - name: role
- *         in: query
- *         required: false
- *         schema:
- *           type: string
- *           enum: []
- *         description: Filter course by role (if applicable)
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/validations/Registration'
  *     responses:
  *       '201':
  *         description: Successfully registered for the course
