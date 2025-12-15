@@ -24,13 +24,6 @@ const router: Router = express.Router();
  *           maximum: 100
  *           default: 10
  *         description: Maximum number of courses to return
- *       - name: role
- *         in: query
- *         required: false
- *         schema:
- *           type: string
- *           enum: []
- *         description: Filter courses by role (if applicable)
  *     responses:
  *       '200':
  *         description: Successfully retrieved all courses registered
