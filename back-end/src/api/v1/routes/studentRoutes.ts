@@ -135,11 +135,17 @@ router.post(
 
 /**
  * @openapi
- * /registrations:
+ * /registrations/{id}:
  *   put:
  *     summary: Updates a single course registered by ID.
  *     tags: [Registrations]
  *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the registration to update.
  *       - name: limit
  *         in: query
  *         required: true
