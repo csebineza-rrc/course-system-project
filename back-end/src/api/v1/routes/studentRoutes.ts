@@ -157,12 +157,7 @@ router.post(
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 users:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/validations/Registration'
+ *               $ref: '#/components/validations/Registration'
  */
 router.put(
     "/:id", 
