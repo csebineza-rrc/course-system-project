@@ -24,13 +24,6 @@ const router: Router = express.Router();
  *           maximum: 100
  *           default: 10
  *         description: Maximum number of courses to return
- *       - name: role
- *         in: query
- *         required: false
- *         schema:
- *           type: string
- *           enum: []
- *         description: Filter courses by role (if applicable)
  *     responses:
  *       '200':
  *         description: Successfully retrieved all courses registered
@@ -39,7 +32,7 @@ const router: Router = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 users:
+ *                 registrations:
  *                   type: array
  *                   items:
  *                     $ref: '#/components/validations/Registrations'
@@ -70,7 +63,7 @@ router.get(
  *         description: The ID of the course to retrieve
  *     responses:
  *       '200':
- *         description: Successfully retrieved the student
+ *         description: Successfully retrieved the course enrollment record
  *         content:
  *           application/json:
  *             schema:
@@ -91,23 +84,12 @@ router.get(
  *   post:
  *     summary: Enroll in a new course.
  *     tags: [Student]
- *     parameters:
- *       - name: limit
- *         in: query
- *         required: true
- *         schema:
- *           type: integer
- *           minimum: 1
- *           maximum: 1
- *           default: 1
- *         description: Enroll is a new single course.
- *       - name: role
- *         in: query
- *         required: false
- *         schema:
- *           type: string
- *           enum: []
- *         description: Filter course by role (if applicable)
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/validations/RegistrationInput'
  *     responses:
  *       '201':
  *         description: Successfully registered for the course
@@ -116,10 +98,8 @@ router.get(
  *             schema:
  *               type: object
  *               properties:
- *                 users:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/validations/Registration'
+ *                 enrollment:
+ *                   $ref: '#/components/validations/Registration'
  *                 total:
  *                   type: integer
  *                 page:
@@ -149,13 +129,6 @@ router.post(
  *           maximum: 1
  *           default: 1
  *         description: Update an existing course from the database.
- *       - name: role
- *         in: query
- *         required: false
- *         schema:
- *           type: string
- *           enum: []
- *         description: Filter courses by role (if applicable)
  *     responses:
  *       '200':
  *         description: Successfully updated a course
