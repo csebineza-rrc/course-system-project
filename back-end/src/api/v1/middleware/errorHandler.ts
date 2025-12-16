@@ -39,7 +39,7 @@ export const errorHandler = (
 
     // single check to handle all our custom application errors
     if (err instanceof AppError) {
-        // Handle out custom application errors
+        // Handle our custom application errors
         res.status(err.statusCode).json(errorResponse(err.message, err.code));
     } else {
         res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json(
