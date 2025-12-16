@@ -78,10 +78,9 @@ export const validateRequest = (
                             (detail) => `${partName}: ${detail.message}`
                         )
                     );
-                } else if (shouldStrip) {
+                } else {
                     return value;
                 }
-                return data;
             };
 
             // Validate each request part if schema is provided
