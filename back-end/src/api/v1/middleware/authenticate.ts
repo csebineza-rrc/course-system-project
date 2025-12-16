@@ -37,12 +37,6 @@ const authenticate = async (
             );
         }
 
-        if (token.length < 1 ){
-            throw new AuthenticationError (
-                "Unauthorized: Invalid token",
-                    "TOKEN_INVALID"
-            );
-        }
 
         const decodedToken: DecodedIdToken = await auth.verifyIdToken(
             token
