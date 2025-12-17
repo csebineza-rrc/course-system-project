@@ -12,4 +12,14 @@ const server: Server = app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}`);
 });
 
+server.on("error", (error: NodeJS.ErrnoException) => {
+    if (error.code === "EADDRINUSE") {
+        console.error(`Port ${PORT} is already in use.`);
+    } else if (error.code === "EACCES") {
+        console.error(`Insufficient privileges to bind to port ${PORT}.`);
+    } else {
+        console.error("Error starting server:", error);
+    }
+    process.exit(1);
+});
 export default server;
