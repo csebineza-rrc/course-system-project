@@ -1,11 +1,13 @@
 document.getElementById("course-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const yearValue = document.getElementById("year").value.trim();
+
   const courseData = {
     courseName: document.getElementById("courseName").value,
     courseCode: document.getElementById("courseCode").value,
     program: document.getElementById("program").value || null,
-    year: parseInt(document.getElementById("year").value) || null,
+    year: yearValue === "" ? null : Number(yearValue),
     description: document.getElementById("description").value
   };
 
