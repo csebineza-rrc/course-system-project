@@ -16,6 +16,9 @@ document.getElementById("course-form").addEventListener("submit", async (e) => {
       body: JSON.stringify(courseData)
     });
 
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
     const result = await res.json();
     document.getElementById("course-status").innerText = result.message;
 
