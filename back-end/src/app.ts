@@ -1,6 +1,9 @@
 import express, { Request, Response, Express } from "express";
 import morgan from "morgan";
 import courseEnrollmentRoutes from "./api/v1/routes/courseEnrollmentRoutes";
+import courseRoutes from "../src/api/v1/routes/co"
+
+
 import courseRoutes from "./api/v1/routes/courseRoutes";
 import setupSwagger from "./config/swagger";
 
