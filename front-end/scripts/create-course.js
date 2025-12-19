@@ -10,7 +10,7 @@ document.getElementById("course-form").addEventListener("submit", async (e) => {
   };
 
   try {
-    const res = await fetch("http://localhost:3000/api/courses", {
+    const res = await fetch("http://localhost:3000/api/v1/courses", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(courseData)
