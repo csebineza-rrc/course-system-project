@@ -62,7 +62,7 @@ export const createNewCourse = async (
     try {
         const { courseName, courseId, credits, instructor, roomNumber, deliveryFormat, cost} = req.body;
 
-        const createNewCourse: Course = await courseService.CreateNewCourse({
+        const createNewCourse: Course = await courseService.createNewCourse({
             courseName,
             courseId,
             credits,
