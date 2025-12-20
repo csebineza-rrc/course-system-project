@@ -35,6 +35,8 @@ document.getElementById("student-form").addEventListener("submit", async (e) => 
     statusElement.innerText = result && result.message ? result.message : "Student created successfully.";
 
   } catch (error) {
-    document.getElementById("student-status").innerText = "Error creating student.";
+    console.error("Error creating student:", error);
+    const errorMessage = (error && error.message) ? error.message : "An unexpected error occurred.";
+    document.getElementById("student-status").innerText = "Error creating student: " + errorMessage;
   }
 });
