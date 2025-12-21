@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enroll Student</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+  <h1>Enroll Student in a Course</h1>
+
+  <form id="enroll-form">
+    <input type="text" id="fullName" placeholder="Student Full Name" required>
+    <input type="email" id="email" placeholder="Student Email" required>
+    <input type="text" id="program" placeholder="Program" required>
+    <input type="number" id="programYear" placeholder="Program Year" required>
+
+    <select id="course-select"></select>
+
+    <button type="submit">Enroll</button>
+  </form>
+
+  <p id="enroll-status"></p>
+
+  <script src="../scripts/enroll.js"></script>
+</body>
+</html>
