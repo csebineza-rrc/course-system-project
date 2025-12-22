@@ -77,11 +77,14 @@ export const loanSchemas: Record<string, RequestSchemas> = {
                 "any.required": "Email is required",
                 "string.empty": "Email cannot be empty",
             }),
-            phone: Joi.number().min(0).required().messages({
-                "any.required": "Phone is required",
-                "number.empty": "Phone cannot be empty",
-                "number.min": "Phone must be greater than zero",
-            }),
+            phone: Joi.string()
+                .pattern(/^[0-9]{7,15}$/)
+                .required()
+                .messages({
+                    "any.required": "Phone is required",
+                    "string.empty": "Phone cannot be empty",
+                    "string.pattern.base": "Phone must contain only digits and be between 7 and 15 characters long",
+                }),
             sinNumber: Joi.number().min(0).required().messages({
                 "any.required": "SIN number is required",
                 "number.empty": "SIN number cannot be empty",
