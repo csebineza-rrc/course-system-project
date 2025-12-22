@@ -1,12 +1,33 @@
 // Load courses into dropdown
 async function loadCourses() {
-  const res = await fetch("http://localhost:3000/api/courses");
-  const courses = await res.json();
+  try {
+    const res = await fetch("http://localhost:3000/api/courses");
 
-  const select = document.getElementById("course-select");
-  courses.forEach(course => {
-    select.innerHTML += `<option value="${course.id}">${course.courseName} (${course.courseCode})</option>`;
-  });
+    if (!res.ok) {
+      throw new Error(`Failed to load courses: ${res.status} ${res.statusText}`);
+    }
+
+    const courses = await res.json();
+
+    const select = document.getElementById("course-select");
+    if (!select) {
+      return;
+    }
+
+    courses.forEach(course => {
+      select.innerHTML += `<option value="${course.id}">${course.courseName} (${course.courseCode})</option>`;
+    });
+  } catch (error) {
+    console.error("Error loading courses:", error);
+    const select = document.getElementById("course-select");
+    if (select) {
+      select.innerHTML = `<option value="">Failed to load courses</option>`;
+    }
+    const statusEl = document.getElementById("enroll-status");
+    if (statusEl) {
+      statusEl.innerText = "Error loading courses. Please try again later.";
+    }
+  }
 }
 
 loadCourses();
