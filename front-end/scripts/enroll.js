@@ -52,6 +52,12 @@ document.getElementById("enroll-form").addEventListener("submit", async (e) => {
     });
 
     const result = await res.json();
+
+    if (!res.ok) {
+      const errorMessage = result && result.message ? result.message : "Error enrolling student.";
+      document.getElementById("enroll-status").innerText = errorMessage;
+      return;
+    }
     document.getElementById("enroll-status").innerText = result.message;
 
   } catch (error) {
