@@ -19,7 +19,7 @@ export const loanSchemas: Record<string, RequestSchemas> = {
             }),
             phone: Joi.number().min(0).required().messages({
                 "any.required": "Phone is required",
-                "number.empty": "Phone is cannot be empty",
+                "number.empty": "Phone cannot be empty",
                 "number.min": "Phone must be greater than zero",
             }),
             sinNumber: Joi.number().min(0).required().messages({
