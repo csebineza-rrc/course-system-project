@@ -91,8 +91,8 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "number.min": "SIN number must be greater than zero",
             }),
             employmentStatus: Joi.string().required().messages({
-                "any.required": "Department is required",
-                "string.empty": "Department cannot be empty",
+                "any.required": "Employment status is required",
+                "string.empty": "Employment status cannot be empty",
             }),
             yearlyIncome: Joi.number().min(0).required().messages({
                 "any.required": "Yearly income is required",
