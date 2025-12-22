@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { RequestSchemas } from "../middleware/validate";
 
-export const loanSchemas: Record<string, RequestSchemas> = {
+export const courseSchemas: Record<string, RequestSchemas> = {
     // POST /loans - Create new loan
     create: {
         body: Joi.object({
