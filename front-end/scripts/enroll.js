@@ -55,6 +55,10 @@ document.getElementById("enroll-form").addEventListener("submit", async (e) => {
     document.getElementById("enroll-status").innerText = result.message;
 
   } catch (error) {
-    document.getElementById("enroll-status").innerText = "Error enrolling student.";
+    console.error("Error enrolling student:", error);
+    const message = (error && error.message) ? error.message : "Error enrolling student.";
+    document.getElementById("enroll-status").innerText = message.startsWith("Error enrolling student")
+      ? message
+      : `Error enrolling student: ${message}`;
   }
 });
