@@ -93,7 +93,7 @@ export const loanSchemas: Record<string, RequestSchemas> = {
             }),
             yearlyIncome: Joi.number().min(0).required().messages({
                 "any.required": "Yearly income is required",
-                "number.empty": "Yearly income is cannot be empty",
+                "number.empty": "Yearly income cannot be empty",
                 "number.min": "Yearly income must be greater than zero",
             }),
             maritalStatus: Joi.string().required().messages({
