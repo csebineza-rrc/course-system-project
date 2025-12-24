@@ -27,9 +27,9 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "string.empty": "Employment status cannot be empty",
             }),
             deliveryFormat: Joi.number().min(0).required().messages({
-                "any.required": "Yearly income is required",
-                "number.empty": "Yearly income is cannot be empty",
-                "number.min": "Yearly income must be greater than zero",
+                "any.required": "Delivery format is required",
+                "number.empty": "Delivery format cannot be empty",
+                "number.min": "Delivery format must be greater than zero",
             }),
             cost: Joi.string().required().messages({
                 "any.required": "Marital status is required",
