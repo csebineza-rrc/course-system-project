@@ -34,9 +34,6 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "any.required": "Cost is required",
                 "string.empty": "Cost cannot be empty",
             }),
-            allAssetsWorth: Joi.number().min(0).required().messages({
-                "number.min": "Assets worth must be greater than zero",
-            }),
         }),
     },
 
