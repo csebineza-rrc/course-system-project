@@ -18,9 +18,9 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "string.empty": "Email cannot be empty",
             }),
             instructor: Joi.number().min(0).required().messages({
-                "any.required": "SIN number is required",
-                "number.empty": "SIN number cannot be empty",
-                "number.min": "SIN number must be greater than zero",
+                "any.required": "Instructor is required",
+                "number.empty": "Instructor cannot be empty",
+                "number.min": "Instructor must be greater than zero",
             }),
             roomNumber: Joi.string().required().messages({
                 "any.required": "Employment status is required",
