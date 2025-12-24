@@ -2,7 +2,7 @@ import Joi from "joi";
 import { RequestSchemas } from "../middleware/validate";
 
 export const courseSchemas: Record<string, RequestSchemas> = {
-    // POST /loans - Create new loan
+    // POST /courses - Create new course
     create: {
         body: Joi.object({
             courseName: Joi.string().required().messages({
@@ -37,7 +37,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
         }),
     },
 
-    // GET /loans/:id - Get single loan
+    // GET /courses/:id - Get single course
     getById: {
         params: Joi.object({
             id: Joi.string().required().messages({
@@ -47,7 +47,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
         }),
     },
 
-    // PUT /loans/:id - Update single loan
+    // PUT /loans/:id - Update single course
     updateById: {
             params: Joi.object({
                 id: Joi.string().required().messages({
@@ -56,48 +56,36 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 }), 
             }),
             body: Joi.object({
-                fullName: Joi.string().required().messages({
-                "any.required": "Name is required",
-                "string.empty": "Name cannot be empty",
+                courseName: Joi.string().required().messages({
+                "any.required": "Course name is required",
+                "string.empty": "Course name cannot be empty",
             }),
-            address: Joi.string().required().messages({
-                "any.required": "Address is required",
-                "string.empty": "Address cannot be empty",
+            courseId: Joi.string().required().messages({
+                "any.required": "Course ID is required",
+                "string.empty": "Course ID cannot be empty",
             }),
-            email: Joi.string().required().messages({
+            credits: Joi.string().email().required().messages({
                 "any.required": "Email is required",
                 "string.empty": "Email cannot be empty",
             }),
-            phone: Joi.string()
-                .pattern(/^[0-9]{7,15}$/)
-                .required()
-                .messages({
-                    "any.required": "Phone is required",
-                    "string.empty": "Phone cannot be empty",
-                    "string.pattern.base": "Phone must contain only digits and be between 7 and 15 characters long",
-                }),
-            sinNumber: Joi.number().min(0).required().messages({
-                "any.required": "SIN number is required",
-                "number.empty": "SIN number cannot be empty",
-                "number.min": "SIN number must be greater than zero",
+            instructor: Joi.string().min(0).required().messages({
+                "any.required": "Instructor is required",
+                "number.empty": "Instructor cannot be empty",
+                "number.min": "Instructor must be greater than zero",
             }),
-            employmentStatus: Joi.string().required().messages({
+            roomNumber: Joi.string().required().messages({
                 "any.required": "Employment status is required",
                 "string.empty": "Employment status cannot be empty",
             }),
-            yearlyIncome: Joi.number().min(0).required().messages({
-                "any.required": "Yearly income is required",
-                "number.empty": "Yearly income cannot be empty",
-                "number.min": "Yearly income must be greater than zero",
+            deliveryFormat: Joi.string().min(0).required().messages({
+                "any.required": "Delivery format is required",
+                "number.empty": "Delivery format cannot be empty",
             }),
-            maritalStatus: Joi.string().required().messages({
-                "any.required": "Marital status is required",
-                "string.empty": "Marital status cannot be empty",
+            cost: Joi.number().required().messages({
+                "any.required": "Cost is required",
+                "number.base": "Cost must be a number",
             }),
-            allAssetsWorth: Joi.number().min(0).required().messages({
-                "number.min": "Assets worth must be greater than zero",
-            }),
-
+                
             }),
         },
 
