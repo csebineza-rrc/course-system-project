@@ -30,7 +30,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "any.required": "Delivery format is required",
                 "number.empty": "Delivery format cannot be empty",
             }),
-            cost: Joi.string().required().messages({
+            cost: Joi.number().required().messages({
                 "any.required": "Marital status is required",
                 "string.empty": "Marital status cannot be empty",
             }),
