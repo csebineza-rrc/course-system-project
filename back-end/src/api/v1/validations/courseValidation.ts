@@ -32,7 +32,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
             }),
             cost: Joi.number().required().messages({
                 "any.required": "Cost is required",
-                "string.empty": "Cost cannot be empty",
+                "number.base": "Cost must be a number",
             }),
         }),
     },
