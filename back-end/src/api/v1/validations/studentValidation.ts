@@ -27,10 +27,6 @@ export const studentSchemas: Record<string, RequestSchemas> = {
                 "number.base": "Program year must be a number",
                 "number.min": "Program year must be greater than or equal to 0",
             }),
-            cost: Joi.number().required().messages({
-                "any.required": "Cost is required",
-                "number.base": "Cost must be a number",
-            }),
         }),
     },
 
