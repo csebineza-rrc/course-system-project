@@ -49,11 +49,11 @@ export const studentSchemas: Record<string, RequestSchemas> = {
                 }), 
             }),
             body: Joi.object({
-                courseName: Joi.string().required().messages({
+                studentId: Joi.string().required().messages({
                 "any.required": "Course name is required",
                 "string.empty": "Course name cannot be empty",
             }),
-            courseId: Joi.string().required().messages({
+            fullName: Joi.string().required().messages({
                 "any.required": "Course ID is required",
                 "string.empty": "Course ID cannot be empty",
             }),
@@ -61,16 +61,16 @@ export const studentSchemas: Record<string, RequestSchemas> = {
                 "any.required": "Email is required",
                 "string.empty": "Email cannot be empty",
             }),
-            instructor: Joi.string().min(0).required().messages({
+            email: Joi.string().min(0).required().messages({
                 "any.required": "Instructor is required",
                 "number.empty": "Instructor cannot be empty",
                 "number.min": "Instructor must be greater than zero",
             }),
-            roomNumber: Joi.string().required().messages({
+            program: Joi.string().required().messages({
                 "any.required": "Employment status is required",
                 "string.empty": "Employment status cannot be empty",
             }),
-            deliveryFormat: Joi.string().min(0).required().messages({
+            programYear: Joi.string().min(0).required().messages({
                 "any.required": "Delivery format is required",
                 "number.empty": "Delivery format cannot be empty",
             }),
