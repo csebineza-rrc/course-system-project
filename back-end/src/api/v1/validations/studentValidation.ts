@@ -5,10 +5,6 @@ export const studentSchemas: Record<string, RequestSchemas> = {
     // POST /courses - Create new course
     create: {
         body: Joi.object({
-            courseName: Joi.string().required().messages({
-                "any.required": "Course name is required",
-                "string.empty": "Course name cannot be empty",
-            }),
             studentId: Joi.string().required().messages({
                 "any.required": "Student ID is required",
                 "string.empty": "Student ID cannot be empty",
