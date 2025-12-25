@@ -13,16 +13,16 @@ export const studentSchemas: Record<string, RequestSchemas> = {
                 "any.required": "Full name is required",
                 "string.empty": "Full name cannot be empty",
             }),
-            instructor: Joi.string().min(0).required().messages({
+            email: Joi.string().min(0).required().messages({
                 "any.required": "Instructor is required",
                 "number.empty": "Instructor cannot be empty",
                 "number.min": "Instructor must be greater than zero",
             }),
-            roomNumber: Joi.string().required().messages({
+            program: Joi.string().required().messages({
                 "any.required": "Employment status is required",
                 "string.empty": "Employment status cannot be empty",
             }),
-            deliveryFormat: Joi.string().min(0).required().messages({
+            programYear: Joi.string().min(0).required().messages({
                 "any.required": "Delivery format is required",
                 "number.empty": "Delivery format cannot be empty",
             }),
