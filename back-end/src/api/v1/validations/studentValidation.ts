@@ -93,8 +93,8 @@ export const studentSchemas: Record<string, RequestSchemas> = {
     deleteById: {
         params: Joi.object({
             id: Joi.string().min(1).required().messages({
-                "any.required": "Loan ID is required",
-                "string.empty": "Loan ID cannot be empty",
+                "any.required": "Course ID is required",
+                "string.empty": "Course ID cannot be empty",
             }),
         }),
     },
