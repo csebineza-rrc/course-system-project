@@ -10,8 +10,8 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "string.empty": "Course name cannot be empty",
             }),
             studentId: Joi.string().required().messages({
-                "any.required": "Course ID is required",
-                "string.empty": "Course ID cannot be empty",
+                "any.required": "Student ID is required",
+                "string.empty": "Student ID cannot be empty",
             }),
             credits: Joi.string().email().required().messages({
                 "any.required": "Email is required",
