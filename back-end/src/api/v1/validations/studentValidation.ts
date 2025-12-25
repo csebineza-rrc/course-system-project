@@ -47,7 +47,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
         }),
     },
 
-    // PUT /loans/:id - Update single course
+    // PUT /courses/:id - Update single course
     updateById: {
             params: Joi.object({
                 id: Joi.string().required().messages({
