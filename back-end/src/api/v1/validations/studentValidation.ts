@@ -19,8 +19,8 @@ export const studentSchemas: Record<string, RequestSchemas> = {
                 "number.min": "Instructor must be greater than zero",
             }),
             program: Joi.string().required().messages({
-                "any.required": "Employment status is required",
-                "string.empty": "Employment status cannot be empty",
+                "any.required": "Program is required",
+                "string.empty": "Program cannot be empty",
             }),
             programYear: Joi.string().min(0).required().messages({
                 "any.required": "Delivery format is required",
