@@ -9,7 +9,7 @@ export const studentSchemas: Record<string, RequestSchemas> = {
                 "any.required": "Student ID is required",
                 "string.empty": "Student ID cannot be empty",
             }),
-            credits: Joi.string().email().required().messages({
+            fullName: Joi.string().email().required().messages({
                 "any.required": "Email is required",
                 "string.empty": "Email cannot be empty",
             }),
