@@ -70,9 +70,10 @@ export const studentSchemas: Record<string, RequestSchemas> = {
                 "any.required": "Program is required",
                 "string.empty": "Program cannot be empty",
             }),
-            programYear: Joi.string().min(0).required().messages({
-                "any.required": "Delivery format is required",
-                "number.empty": "Delivery format cannot be empty",
+            programYear: Joi.number().min(0).required().messages({
+                "any.required": "Program year is required",
+                "number.base": "Program year must be a number",
+                "number.min": "Program year must be greater than or equal to 0",
             }),
             cost: Joi.number().required().messages({
                 "any.required": "Cost is required",
