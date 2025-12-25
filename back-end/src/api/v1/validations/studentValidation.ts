@@ -51,8 +51,8 @@ export const studentSchemas: Record<string, RequestSchemas> = {
     updateById: {
             params: Joi.object({
                 id: Joi.string().required().messages({
-                    "any.required": "Employee ID is required",
-                    "string.empty": "Employee ID cannot be empty",
+                    "any.required": "Course ID is required",
+                    "string.empty": "Course ID cannot be empty",
                 }), 
             }),
             body: Joi.object({
