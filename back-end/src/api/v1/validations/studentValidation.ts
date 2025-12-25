@@ -50,8 +50,8 @@ export const studentSchemas: Record<string, RequestSchemas> = {
             }),
             body: Joi.object({
                 studentId: Joi.string().required().messages({
-                "any.required": "Course name is required",
-                "string.empty": "Course name cannot be empty",
+                "any.required": "Student ID is required",
+                "string.empty": "Student ID cannot be empty",
             }),
             fullName: Joi.string().required().messages({
                 "any.required": "Full name is required",
