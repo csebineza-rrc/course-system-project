@@ -17,7 +17,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "any.required": "Course ID is required",
                 "string.empty": "Course ID cannot be empty",
             }),
-            instructor: Joi.string().min(0).required().messages({
+            semester: Joi.string().min(0).required().messages({
                 "any.required": "Instructor is required",
                 "number.empty": "Instructor cannot be empty",
                 "number.min": "Instructor must be greater than zero",
