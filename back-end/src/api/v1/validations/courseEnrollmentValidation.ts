@@ -22,10 +22,6 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "number.empty": "Semester cannot be empty",
                 "number.min": "Semester must be greater than zero",
             }),
-            cost: Joi.number().required().messages({
-                "any.required": "Cost is required",
-                "number.base": "Cost must be a number",
-            }),
         }),
     },
 
