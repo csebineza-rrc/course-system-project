@@ -22,6 +22,11 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "number.empty": "Semester cannot be empty",
                 "number.min": "Semester must be greater than zero",
             }),
+            enrolledAt: Joi.string().required().messages({
+                // Date format
+                "any.required": "Course ID is required",
+                "string.empty": "Course ID cannot be empty",
+            })
         }),
     },
 
