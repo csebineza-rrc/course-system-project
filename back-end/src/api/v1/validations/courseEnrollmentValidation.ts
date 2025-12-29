@@ -24,8 +24,8 @@ export const courseSchemas: Record<string, RequestSchemas> = {
             }),
             enrolledAt: Joi.string().required().messages({
                 // Date format
-                "any.required": "Course ID is required",
-                "string.empty": "Course ID cannot be empty",
+                "any.required": "enrolledAt is required",
+                "string.empty": "enrolledAt cannot be empty",
             })
         }),
     },
