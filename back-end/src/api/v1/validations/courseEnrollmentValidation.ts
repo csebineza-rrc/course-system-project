@@ -66,9 +66,9 @@ export const courseSchemas: Record<string, RequestSchemas> = {
                 "number.empty": "Instructor cannot be empty",
                 "number.min": "Instructor must be greater than zero",
             }),
-            enrolledAt: Joi.string().required().messages({
-                "any.required": "Employment status is required",
-                "string.empty": "Employment status cannot be empty",
+            enrolledAt: Joi.date().iso().required().messages({
+                "any.required": "enrolledAt is required",
+                "string.empty": "enrolledAt cannot be empty",
             }),
             deliveryFormat: Joi.string().min(0).required().messages({
                 "any.required": "Delivery format is required",
