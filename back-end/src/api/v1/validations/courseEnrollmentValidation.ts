@@ -63,7 +63,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
             }),
             semester: Joi.string().required().messages({
                 "any.required": "Semester is required",
-                "number.empty": "Instructor cannot be empty",
+                "number.empty": "Semester cannot be empty",
                 "number.min": "Instructor must be greater than zero",
             }),
             enrolledAt: Joi.date().iso().required().messages({
