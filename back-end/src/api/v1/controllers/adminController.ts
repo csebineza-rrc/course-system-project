@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { auth } from "../../../config/fireBaseConfig";
-import { successResponse } from "../models/responseModel";
+import { successResponse } from "../models/Response";
 import { HTTP_STATUS } from "../constants/httpConstants";
 
 /**
