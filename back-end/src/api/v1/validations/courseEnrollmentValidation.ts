@@ -73,7 +73,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
             }),
         },
 
-    // POST /registrations/:id - Delete single course enrolled in
+    // DELETE /registrations/:id - Delete single course enrolled in
     deleteById: {
         params: Joi.object({
             id: Joi.string().min(1).required().messages({
