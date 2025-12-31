@@ -2,7 +2,7 @@ import Joi from "joi";
 import { RequestSchemas } from "../middleware/validate";
 
 export const courseSchemas: Record<string, RequestSchemas> = {
-    // POST /courses - Create new course
+    // POST /courses - Enrollee in new course
     create: {
         body: Joi.object({
             studentId: Joi.string().required().messages({
