@@ -62,7 +62,7 @@ export const createNewCourse = async (
     try {
         const { courseName, courseId, credits, instructor, roomNumber, deliveryFormat, cost} = req.body;
 
-        const createNewCourse: Course = await courseService.CreateNewCourse({
+        const createNewCourse: Course = await courseService.createNewCourse({
             courseName,
             courseId,
             credits,
@@ -92,12 +92,9 @@ export const updateCourse = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const id = req.params.id; 
+        const id = req.params.id;
 
-        // Extract update fields
-        const { courseName, courseId, credits, instructor, roomNumber, deliveryFormat, cost} = req.body;
-
-        const updatedCourse: Course = await courseService.updateCourse({
+        const {
             courseName,
             courseId,
             credits,
@@ -105,8 +102,20 @@ export const updateCourse = async (
             roomNumber,
             deliveryFormat,
             cost,
-        });
-        
+        } = req.body;
+
+        const updatedCourse: Course = await courseService.updateCourse(
+            id,
+            {
+                courseName,
+                courseId,
+                credits,
+                instructor,
+                roomNumber,
+                deliveryFormat,
+                cost,
+            }
+        );
 
         res.status(HTTP_STATUS.OK).json(
             successResponse(updatedCourse, "Course updated successfully")
