@@ -4,8 +4,9 @@ import { successResponse } from "../models/Response";
 import { HTTP_STATUS } from "../constants/httpConstants";
 
 /**
- * Handles setting roles (custom claims in Firebase) for a user
- * @param req - The request object
+ * Handles setting Firebase custom claims for a user.
+ * Commonly used to assign roles, but can include any key-value pairs.
+ * @param req - The request object containing `uid` and `roles` (custom claims payload)
  * @param res - The response object
  * @param next - The next middleware function
  */
