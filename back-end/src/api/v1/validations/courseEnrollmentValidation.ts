@@ -30,7 +30,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
         }),
     },
 
-    // GET /courses/:id - Get single course
+    // GET /registrations/:id - Get single course enrolled in
     getById: {
         params: Joi.object({
             id: Joi.string().required().messages({
