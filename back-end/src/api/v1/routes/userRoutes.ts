@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { getUserDetails } from "../controllers/userController";
+import { getUserDetails } from "../controllers/studentController";
 import authenticate from "../middleware/authenticate";
 import isAuthorized, { AuthorizationOptions } from "../middleware/authorize";
 
