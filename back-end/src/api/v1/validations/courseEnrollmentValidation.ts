@@ -40,7 +40,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
         }),
     },
 
-    // PUT /courses/:id - Update single course
+    // PUT /registrations/:id - Update single course enrolled in
     updateById: {
             params: Joi.object({
                 id: Joi.string().required().messages({
