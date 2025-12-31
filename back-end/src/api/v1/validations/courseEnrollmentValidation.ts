@@ -2,7 +2,7 @@ import Joi from "joi";
 import { RequestSchemas } from "../middleware/validate";
 
 export const courseSchemas: Record<string, RequestSchemas> = {
-    // POST /courses - Create new course
+    // POST /courses - Enroll in new course
     create: {
         body: Joi.object({
             studentId: Joi.string().required().messages({
@@ -30,7 +30,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
         }),
     },
 
-    // GET /courses/:id - Get single course
+    // GET /registrations/:id - Get single course enrolled in
     getById: {
         params: Joi.object({
             id: Joi.string().required().messages({
@@ -40,7 +40,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
         }),
     },
 
-    // PUT /courses/:id - Update single course
+    // PUT /registrations/:id - Update single course enrolled in
     updateById: {
             params: Joi.object({
                 id: Joi.string().required().messages({
@@ -69,16 +69,11 @@ export const courseSchemas: Record<string, RequestSchemas> = {
             enrolledAt: Joi.date().iso().required().messages({
                 "any.required": "enrolledAt is required",
                 "string.empty": "enrolledAt cannot be empty",
-            }),
-            deliveryFormat: Joi.string().min(0).required().messages({
-                "any.required": "Delivery format is required",
-                "number.empty": "Delivery format cannot be empty",
-            })
-                
+            }),              
             }),
         },
 
-    // POST /loans/:id - Delete single loan
+    // DELETE /registrations/:id - Delete single course enrolled in
     deleteById: {
         params: Joi.object({
             id: Joi.string().min(1).required().messages({
