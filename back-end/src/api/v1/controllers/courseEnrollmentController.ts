@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import * as courseEnrollmentService from "../services/courseEnrollmentService";
-import { courseEnrollment } from "../models/courseEnrollment";
+import { CourseEnrollment } from "../models/courseEnrollment";
 import { HTTP_STATUS } from "../middleware/validate";
 import { successResponse } from "../models/Response";
-import { sendEmail } from "../../../utils/mailer";  
+import { sendEmail } from "../utils/mailer";  
 
 /**
  * Handles the GET request to retrieve all courses enrolled
@@ -18,7 +18,7 @@ export const getAllCoursesEnrolled = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const Allstudents: courseEnrollment[] = await courseEnrollmentService.getAllCoursesEnrolled();
+        const Allstudents: CourseEnrollment[] = await courseEnrollmentService.getAllCoursesEnrolled();
         res.status(HTTP_STATUS.OK).json(
             successResponse(Allstudents, "All courses enrolled successfully retrieved.")
         );
@@ -61,9 +61,9 @@ export const enrollInCourse = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const { studentId, courseName, courseId, semester, enrolledAt } = req.body;
+        const { studentId, courseName, courseId, semester, enrolledAt, email } = req.body;
 
-        const enrollCourse: courseEnrollment = await courseEnrollmentService.enrollInCourse({
+        const enrollCourse: CourseEnrollment = await courseEnrollmentService.enrollInCourse({
             studentId,
             courseName,
             courseId,
@@ -75,7 +75,7 @@ export const enrollInCourse = async (
             email,
             "Course Registration Successful",
                 `
-                <h2>Hello ${fullName},</h2>
+                <h2>Hello ${studentId},</h2>
                 <p>You have successfully registered for the course:</p>
                 <p><strong>${courseName}</strong></p>
                 <br/>
@@ -106,9 +106,9 @@ export const updateCourseEnrolled = async (
         const id = req.params.id; 
 
         // Extract update fields
-        const { studentId, courseName, courseId, semester, enrolledAt } = req.body;
+        const { studentId, courseName, courseId, semester, enrolledAt, email } = req.body;
 
-        const updatedCourse: courseEnrollment = await courseEnrollmentService.enrollInCourse({
+        const updatedCourse: CourseEnrollment = await courseEnrollmentService.enrollInCourse({
             studentId,
             courseName,
             courseId,
