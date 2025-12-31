@@ -16,10 +16,19 @@ export const getErrorMessage = (error: unknown): string => {
  * @param error - The error object
  * @returns The error code as a string
  */
+type ErrorWithCode = Error & { code?: string };
+
+const hasErrorCode = (error: unknown): error is ErrorWithCode => {
+    if (!(error instanceof Error)) {
+        return false;
+    }
+
+    return "code" in error && typeof (error as { code?: unknown }).code === "string";
+};
+
 export const getErrorCode = (error: unknown): string => {
-    if (error instanceof Error) {
-        const firebaseError = error as any;
-        return firebaseError.code || "UNKNOWN_ERROR";
+    if (hasErrorCode(error)) {
+        return error.code ?? "UNKNOWN_ERROR";
     }
 
     return "UNKNOWN_ERROR";
