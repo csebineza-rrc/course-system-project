@@ -69,12 +69,7 @@ export const courseSchemas: Record<string, RequestSchemas> = {
             enrolledAt: Joi.date().iso().required().messages({
                 "any.required": "enrolledAt is required",
                 "string.empty": "enrolledAt cannot be empty",
-            }),
-            deliveryFormat: Joi.string().min(0).required().messages({
-                "any.required": "Delivery format is required",
-                "number.empty": "Delivery format cannot be empty",
-            })
-                
+            }),              
             }),
         },
 
