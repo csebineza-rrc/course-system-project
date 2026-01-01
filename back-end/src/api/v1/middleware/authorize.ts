@@ -6,7 +6,7 @@ import { AuthorizationError } from "../errors/errors";
 /**
  * Middleware to check if a user is authorized based on their role or UID.
  *
- * @param {AuthorizationOptions} authorizationOptions - The authorization options.
+ * @param {AuthorizationOptions} - The authorization options.
  * @returns {MiddlewareFunction} The middleware function.
  */
 const isAuthorized = (authorizationOptions: AuthorizationOptions): MiddlewareFunction => {

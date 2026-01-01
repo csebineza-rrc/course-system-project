@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import * as courseService from "../services/studentService";
+import * as studentService from "../services/studentService";
 import { Student } from "../models/student";
 import { HTTP_STATUS } from "../middleware/validate";
 import { successResponse } from "../models/Response";
@@ -17,7 +17,7 @@ export const getAllStudents = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const allStudents: Student[] = await courseService.getAllCourses();
+        const allStudents: Student[] = await studentService.getAllCourses();
         res.status(HTTP_STATUS.OK).json(
             successResponse(allStudents, "All students successfully retrieved.")
         );
@@ -39,7 +39,7 @@ export const getStudentByID = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-       const retrievedStudent = await courseService.getCourseById(req.params.id);
+       const retrievedStudent = await studentService.getCourseById(req.params.id);
         res.status(HTTP_STATUS.OK).json(
             successResponse(retrievedStudent, "Student successfully retrieved.")
         );
@@ -62,7 +62,7 @@ export const createNewStudent = async (
     try {
         const { studentId, fullName, email, program, programYear} = req.body;
 
-        const createNewCourse: Course = await courseService.CreateNewCourse({
+        const createNewCourse: Student = await studentService.CreateNewCourse({
             studentId,
             fullName,
             email,
@@ -90,27 +90,36 @@ export const updateStudent = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const id = req.params.id; 
+        const id = req.params.id;
 
         // Extract update fields
-        const { studentId, fullName, email, program, programYear} = req.body;
-
-        const updatedCourse: Course = await courseService.updateCourse({
+        const {
             studentId,
             fullName,
             email,
             program,
             programYear,
-        });
-        
+        } = req.body;
+
+        const updatedStudent: Student = await studentService.updateCourse(
+            id,
+            {
+                studentId,
+                fullName,
+                email,
+                program,
+                programYear,
+            }
+        );
 
         res.status(HTTP_STATUS.OK).json(
-            successResponse(updatedCourse, "Student updated successfully")
+            successResponse(updatedStudent, "Student updated successfully")
         );
     } catch (error: unknown) {
         next(error);
     }
 };
+
 
 /**
  * Manages a DELETE request to remove/delete a student
@@ -126,7 +135,7 @@ export const deleteStudent = async (
     try {
         const id = req.params.id;
 
-        await courseService.deleteCourse(id);
+        await studentService.deleteStudent(id);
         res.status(HTTP_STATUS.OK).json(
             successResponse("Student successfully deleted")
         );

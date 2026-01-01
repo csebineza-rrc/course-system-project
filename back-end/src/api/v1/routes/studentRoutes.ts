@@ -4,7 +4,7 @@ import authenticate from "../middleware/authenticate";
 import isAuthorized from "../middleware/authorize";
 import { AuthorizationOptions } from "../models/authorizationOptions";
 import { validateRequest } from "../middleware/validate";
-import { courseEnrollmentSchemas } from "../validations/courseEnrollmentSchemas";
+import { studentSchemas } from "../validations/studentValidation";
 
 const router: Router = express.Router();
 
@@ -111,7 +111,7 @@ router.post(
     "/", 
     authenticate,
     isAuthorized({ hasRole: ["student"]} as AuthorizationOptions),
-    validateRequest(courseEnrollmentSchemas.create),
+    validateRequest(studentSchemas.create),
     courseEnrollmentController.enrollInCourse
 );
 
@@ -156,7 +156,7 @@ router.put(
     "/:id", 
     authenticate,
     isAuthorized({ hasRole: ["student"]} as AuthorizationOptions), 
-    validateRequest(courseEnrollmentSchemas.updateById),
+    validateRequest(studentSchemas.updateById),
     courseEnrollmentController.updateCourseEnrolled 
 );
 
@@ -181,7 +181,7 @@ router.delete(
     "/:id", 
     authenticate,
     isAuthorized({ hasRole: ["student"]} as AuthorizationOptions),
-    validateRequest(courseEnrollmentSchemas.deleteById),
+    validateRequest(studentSchemas.deleteById),
     courseEnrollmentController.deleteCourseEnrolled   
 );
 
