@@ -1,7 +1,7 @@
 import express, { Router } from "express";
-import { getUserDetails } from "../controllers/studentController";
 import authenticate from "../middleware/authenticate";
-import isAuthorized, { AuthorizationOptions } from "../middleware/authorize";
+import isAuthorized from "../middleware/authorize";
+import { AuthorizationOptions } from "../models/authorizationOptions";
 
 const router: Router = express.Router();
 
@@ -9,7 +9,6 @@ router.get(
     "/:id",
     authenticate,
     isAuthorized({ hasRole: ["student"], allowSameUser: true } as AuthorizationOptions),
-    getUserDetails
 );
 
 export default router;
